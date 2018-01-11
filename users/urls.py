@@ -19,4 +19,5 @@ from users import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('users/', views.users_index, name='users_index'),
+    path('users/register', views.user_registration, name='user_registration')
 ]

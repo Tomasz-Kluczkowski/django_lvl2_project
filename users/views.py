@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from users import forms
 from users.models import User
 
 
@@ -12,3 +12,19 @@ def users_index(request):
 
 def index(request):
     return render(request, "index.html")
+
+
+def user_registration(request):
+    user_registration_form = forms.UserRegistrationForm()
+
+    if request.method == "POST":
+        user_registration_form = forms.UserRegistrationForm(request.POST)
+
+        if user_registration_form.is_valid():
+
+            user_registration_form.save(commit=True)
+
+    return render(request,
+                  "users/register.html",
+                  {"user_registration_form": user_registration_form})
+
